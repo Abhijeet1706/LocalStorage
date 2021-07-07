@@ -1,6 +1,7 @@
 const addItems = document.querySelector(".add-items");
 const itemsList = document.querySelector(".plates");
 const items = JSON.parse(localStorage.getItem("items")) || [];
+const uncheckboxes = document.querySelector(".button");
 
 function addItem(e) {
   e.preventDefault();
@@ -40,6 +41,17 @@ function toggleDone(e) {
   populateList(items, itemsList);
 }
 
+function unCheckAll(e) {
+  var listItemChk = document.querySelectorAll(".plates li input");
+
+  if (listItemChk && listItemChk.length > 0) {
+    Array.from(listItemChk).forEach(function (inputChk) {
+      inputChk.checked = false;
+    });
+  }
+}
+
+uncheckboxes.addEventListener("click", unCheckAll);
 addItems.addEventListener("submit", addItem);
 itemsList.addEventListener("click", toggleDone);
 
